@@ -1,9 +1,9 @@
 #!/bin/bash
 defbook="unsorted"
-helpstring="usage: ./joplin-note.sh [-h] [-s] [-f] [-b notebook_name] [+<tag>] note_title note description [+<tag>]...
+helpstring="usage: ./joplin-note.sh [-h] [-s] [-q] [-b notebook_name] [+<tag>] note_title note description [+<tag>]...
     -h                  This help text.
-    -s                  Syncs after your note entry.
-    -f                  Silent mode, does not return anything unless some error occur
+    -q                  Does NOT sync after your note entry (quiet mode).
+    -s                  Silent mode, does not return anything unless some error occur
                         and simply creates a notebook if the one specified does not exist.
     -b <notebook_name>  Specify a notebook to add the note to (default is \"$defbook\").
                         It will ask you wheter you would like to create a new book if it 
@@ -20,10 +20,10 @@ while getopts ":hsfb:" opt; do
       printf '%s\n' "$helpstring"
       exit 0
       ;;
-    s)
+    q)
       syncornot=1
       ;; 
-    f)
+    s)
       silentmode=1
       ;;    
     b)
